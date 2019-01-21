@@ -1,0 +1,4 @@
+const Asset = {
+    async init() {
+    }
+};
