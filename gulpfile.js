@@ -1,22 +1,24 @@
 // -----------------------------------------------------------------------------
 // Imports
 // -----------------------------------------------------------------------------
-const gulp     = require('gulp');
-const fs       = require('fs');
+const gulp       = require('gulp');
+const fs         = require('fs');
 
 // -----------------------------------------------------------------------------
 // Gulp Plugins
 // -----------------------------------------------------------------------------
-const advpng   = require('imagemin-advpng');
-const advzip   = require('gulp-advzip');
-const concat   = require('gulp-concat');
-const cleancss = require('gulp-clean-css');
-const htmlmin  = require('gulp-htmlmin');
-const imagemin = require('gulp-imagemin');
-const size     = require('gulp-size');
-const template = require('gulp-template');
-const terser   = require('gulp-terser');
-const zip      = require('gulp-zip');
+const advpng     = require('imagemin-advpng');
+const advzip     = require('gulp-advzip');
+const concat     = require('gulp-concat');
+const cleancss   = require('gulp-clean-css');
+const htmlmin    = require('gulp-htmlmin');
+const ifdef      = require('gulp-ifdef');
+const imagemin   = require('gulp-imagemin');
+const size       = require('gulp-size');
+const sourcemaps = require('gulp-sourcemaps');
+const template   = require('gulp-template');
+const terser     = require('gulp-terser');
+const zip        = require('gulp-zip');
 
 // -----------------------------------------------------------------------------
 // Helper Methods
@@ -63,13 +65,17 @@ task('build:css', () => {
 // -----------------------------------------------------------------------------
 task('build:js:dev', () => {
     return gulp.src('src/js/*.js')
+        .pipe(sourcemaps.init())
+        .pipe(ifdef({ DEBUG: true }, { extname: ['js'] }))
         .pipe(concat('app.dev.js'))
         .pipe(terser())
         .pipe(size({ title: 'js:dev' }))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('temp'));
 });
 task('build:js:prod', () => {
     return gulp.src('src/js/*.js')
+        .pipe(ifdef({ DEBUG: false }, { extname: ['js'] }))
         .pipe(concat('app.prod.js'))
         .pipe(terser())
         .pipe(size({ title: 'js:prod' }))

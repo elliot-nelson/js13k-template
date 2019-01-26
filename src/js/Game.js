@@ -10,6 +10,9 @@ class Game {
         this.framems = performance.now();
         window.requestAnimationFrame(() => this.onFrame());
         this.frame = 0;
+        /// #if DEBUG
+        console.log('Starting game.');
+        /// #endif
     }
 
     onFrame(currentms) {
