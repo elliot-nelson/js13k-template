@@ -1,0 +1,11 @@
+{
+    "files": [
+        "dist/ts/app.ts"
+    ],
+    "compilerOptions": {
+        "alwaysStrict": true,
+        "module": "es6",
+        "noImplicitAny": true,
+        "target": "es2018"
+    }
+}

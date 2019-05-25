@@ -1,0 +1,15 @@
+# Node modules
+node_modules
+
+# Output
+temp
+dist
+
+# Misc files
+.DS_Store
+.vscode
+
+# I don't lock the template. I suggest you remove this line and check it in
+# if you copy this template for your own game.
+package-lock.json
+

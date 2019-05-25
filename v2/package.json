@@ -1,0 +1,28 @@
+{
+  "name": "js13k-template-v2",
+  "version": "1.0.0",
+  "description": "Small, opinionated templates for #j13k games.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Elliot Nelson",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-advzip": "^1.2.0",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-ifdef": "^0.1.0",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-size": "^3.0.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-template": "^5.0.0",
+    "gulp-terser": "^1.1.7",
+    "gulp-typescript": "^5.0.1",
+    "gulp-zip": "^4.2.0",
+    "imagemin-advpng": "^5.0.0",
+    "typescript": "^3.4.5"
+  }
+}
