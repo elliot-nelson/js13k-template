@@ -135,8 +135,8 @@ task('build:zip', () => {
 task('build', series(
     parallel('build:css', 'build:js', 'build:assets'),
     'build:html',
-    'build:zip')
-);
+    'build:zip'
+));
 
 // -----------------------------------------------------------------------------
 // Watch
