@@ -1,1 +1,4 @@
-declare game Game;
+/**
+ * Ambient declarations / type definitions.
+ */
+declare let game: Game;

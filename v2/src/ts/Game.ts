@@ -1,3 +1,6 @@
+/**
+ * Game state.
+ */
 class Game {
     canvas: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;

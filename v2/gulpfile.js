@@ -50,21 +50,21 @@ const parallel = (...args) => {
     return gulp.parallel(...args.map(name => normalize(name)));
 }
 
-task('concat:ts', () => {
+// -----------------------------------------------------------------------------
+// JS Build
+// -----------------------------------------------------------------------------
+task('build:js', () => {
+   const tsproject = typescript.createProject('tsconfig.json');
+
     return gulp.src([
         'src/ts/ambient.d.ts',
         'src/ts/Game.ts',
-        'src/ts/WindowInterface.ts',
         'src/ts/index.ts'
-    ]).pipe(concat('app.ts'))
-    .pipe(gulp.dest('dist/ts'));
+    ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('app.ts'))
+    .pipe(tsproject()).js
+    .pipe(terser())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('dist/js'));
 });
-
-task('compile:ts', () => {
-   const project = typescript.createProject('tsconfig.json');
-   return project.src()
-       .pipe(project()).js
-       .pipe(gulp.dest('dist/js'));
-});
-
-task('build:js', series('concat:ts', 'compile:ts'));
