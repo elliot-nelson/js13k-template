@@ -24,33 +24,13 @@ const stripImportExport = require('gulp-strip-import-export');
 
 // -----------------------------------------------------------------------------
 // Helper Methods
-//
-// I prefer to name my tasks with colons (foo:bar:baz), which doesn't mesh well
-// with gulp v4's preference for named functions as tasks. These helpers bridge
-// the gap and keep my tasks nice and clean, even though I'm being a
-// stick-in-the-mud and basically defining them "v3 style".
 // -----------------------------------------------------------------------------
-const tasks = {};
-module.exports = tasks;
+const { task, series, parallel } = require('./helpers');
+module.exports = task.exports;
 
-const task = (name, fn) => {
-    tasks[name] = fn;
-    fn.displayName = name;
-}
-const normalize = arg => {
-    if (typeof arg === 'string') {
-        if (tasks[arg]) return tasks[arg];
-        throw new Error('No such task: ' + arg);
-    }
-    return arg;
-}
-const series = (...args) => {
-    return gulp.series(...args.map(name => normalize(name)));
-}
-const parallel = (...args) => {
-    return gulp.parallel(...args.map(name => normalize(name)));
-}
-
+// -----------------------------------------------------------------------------
+// Typescript Project
+// -----------------------------------------------------------------------------
 const tsproject = typescript.createProject({
     module: 'es6',
     noImplicitAny: true,
