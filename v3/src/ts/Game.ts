@@ -13,6 +13,7 @@ export class Game {
         this.ctx = this.canvas.getContext('2d');
 
         this.input = new Input();
+        await this.input.init();
         //await Asset.init();
     }
 

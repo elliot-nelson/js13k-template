@@ -1,7 +1,10 @@
-import { game } from "./ambient";
+import { KeyboardInput } from './KeyboardInput';
 
 export class Input {
+    keyboard: KeyboardInput;
+
     async init() {
-        game.update();
+        this.keyboard = new KeyboardInput();
+        await this.keyboard.init();
     }
 }
